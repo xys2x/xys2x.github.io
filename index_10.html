@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XYX Studio — Websites &amp; Booking Systems</title>
+<meta name="description" content="XYX Studio — custom websites, booking systems and online stores for businesses. Based in the Azores.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Oswald:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bone:#edebe4;
+    --bone-2:#e4e2d9;
+    --ink:#3c3b37;
+    --ink-soft:#6b6a63;
+    --line:#3c3b37;
+    --white:#f7f6f1;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Archivo', -apple-system, sans-serif;
+    background:var(--bone);
+    color:var(--ink);
+    line-height:1.6;
+  }
+  a{text-decoration:none; color:inherit;}
+  ul{list-style:none;}
+  .container{max-width:1140px; margin:0 auto; padding:0 24px;}
+  section{padding:96px 0;}
+
+  .display{
+    font-family:'Oswald', sans-serif;
+    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:0.005em;
+    line-height:1.04;
+  }
+  .serif{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:500;
+    text-transform:none;
+    letter-spacing:0;
+  }
+  .spark{font-family:serif;}
+
+  /* Nav */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(237,235,228,0.94);
+    backdrop-filter:blur(8px);
+    border-bottom:1.5px solid var(--line);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 24px;
+    max-width:1140px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Oswald', sans-serif;
+    font-size:1.35rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+  }
+  .brand span{font-weight:300;}
+  .nav-links{display:flex; gap:34px; align-items:center;}
+  .nav-links a{
+    font-size:0.8rem; font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    color:var(--ink);
+    border-bottom:1.5px solid transparent;
+    padding-bottom:2px;
+    transition:border-color .2s;
+  }
+  .nav-links a:hover{border-color:var(--ink);}
+  .nav-actions{display:flex; align-items:center; gap:14px;}
+  .lang-toggle{
+    display:flex;
+    border:1.5px solid var(--line);
+    border-radius:999px;
+    overflow:hidden;
+    font-family:'Oswald', sans-serif;
+  }
+  .lang-toggle button{
+    background:transparent; border:none;
+    padding:7px 13px;
+    font-size:0.72rem; font-weight:600;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    cursor:pointer;
+    color:var(--ink);
+    transition:background .2s, color .2s;
+  }
+  .lang-toggle button.active{background:var(--ink); color:var(--bone);}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    padding:13px 28px;
+    border-radius:999px;
+    border:1.5px solid var(--ink);
+    font-size:0.8rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    transition:background .2s, color .2s, transform .2s;
+    cursor:pointer;
+    background:transparent;
+    color:var(--ink);
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-solid{background:var(--ink); color:var(--bone);}
+  .btn-solid:hover{background:#2b2a27;}
+  .btn-sm{padding:10px 20px; font-size:0.72rem;}
+  .mobile-toggle{display:none; background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--ink);}
+
+  /* Hero */
+  .hero{
+    padding:110px 0 90px;
+    border-bottom:1.5px solid var(--line);
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.25fr 0.75fr;
+    gap:44px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6.5vw, 4.6rem);
+    margin-bottom:34px;
+  }
+  .hero h1 .pov{font-weight:600;}
+  .hero .lede{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:clamp(1.5rem, 3vw, 2.2rem);
+    line-height:1.3;
+    margin-bottom:44px;
+    max-width:640px;
+  }
+  .hero-cta{display:flex; gap:16px; flex-wrap:wrap; align-items:center;}
+  .hero-side{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .hero-photo{
+    width:100%;
+    max-width:460px;
+    aspect-ratio:4/5;
+    border:1.5px solid var(--line);
+    border-radius:210px 210px 28px 28px;
+    overflow:hidden;
+    box-shadow:12px 12px 0 rgba(60,59,55,0.08);
+    background:var(--bone-2);
+  }
+  .hero-photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+  }
+  .hero-side .spark-mark{
+    position:absolute;
+    font-size:1.6rem;
+    line-height:1;
+    color:var(--ink);
+  }
+  .hero-side .s1{top:-10px; right:-6px;}
+  .hero-side .s2{bottom:22px; left:-30px;}
+  .eyebrow{
+    display:inline-block;
+    font-size:0.78rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    border:1.5px solid var(--line);
+    border-radius:999px;
+    padding:8px 20px;
+    margin-bottom:38px;
+  }
+
+  /* Ticker */
+  .ticker{
+    border-bottom:1.5px solid var(--line);
+    padding:16px 0;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .ticker-inner{
+    display:inline-block;
+    animation:ticker 28s linear infinite;
+    font-family:'Oswald', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.9rem;
+  }
+  .ticker-inner .spark{margin:0 22px;}
+  @keyframes ticker{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* Difference: website vs platform */
+  .difference{border-bottom:1.5px solid var(--line);}
+  .diff-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+  .diff-card{
+    border:1.5px solid var(--line);
+    border-radius:36px;
+    padding:44px 40px;
+  }
+  .diff-card.platform{background:var(--bone-2);}
+  .diff-card .label{
+    font-size:0.72rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  .diff-card h3{
+    font-family:'Oswald', sans-serif;
+    font-weight:500;
+    text-transform:uppercase;
+    font-size:1.7rem;
+    line-height:1.1;
+    margin-bottom:8px;
+  }
+  .diff-card .tag{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    margin-bottom:24px;
+  }
+  .diff-card ul li{
+    padding:11px 0;
+    border-bottom:1px solid rgba(60,59,55,0.15);
+    font-size:0.95rem;
+    display:flex; align-items:center; gap:12px;
+  }
+  .diff-card ul li:last-child{border-bottom:none;}
+  .diff-card ul li::before{content:"✦"; font-size:0.72rem;}
+  .diff-card .price-hint{
+    margin-top:22px;
+    font-size:0.8rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    color:var(--ink-soft);
+  }
+  .diff-note{
+    margin-top:40px;
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:clamp(1.2rem, 2.4vw, 1.6rem);
+    text-align:center;
+    max-width:760px;
+    margin-left:auto;
+    margin-right:auto;
+    line-height:1.45;
+  }
+
+  /* Section heads */
+  .section-head{margin-bottom:60px;}
+  .kicker{
+    display:flex; align-items:center; gap:14px;
+    font-size:0.78rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    color:var(--ink-soft);
+    margin-bottom:18px;
+  }
+  .kicker::before{content:"✦"; font-size:0.9rem; color:var(--ink);}
+  .section-head h2{
+    font-size:clamp(2rem, 4.5vw, 3.2rem);
+    max-width:720px;
+  }
+  .section-head h2 .serif{font-size:1.05em;}
+  .services-note{
+    margin-top:20px;
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:640px;
+  }
+  .services-note strong{color:var(--ink); font-weight:600; font-style:normal;}
+
+  /* Services */
+  .services{border-bottom:1.5px solid var(--line); padding-top:88px;}
+  .service-list{border-top:1.5px solid var(--line);}
+  .service-item{
+    display:grid;
+    grid-template-columns:70px 1.1fr 1.6fr;
+    gap:28px;
+    padding:34px 0;
+    border-bottom:1.5px solid var(--line);
+    align-items:start;
+  }
+  .service-item .num{
+    font-family:'Oswald', sans-serif;
+    font-weight:300;
+    font-size:1.05rem;
+    padding-top:6px;
+  }
+  .service-item h3{
+    font-family:'Oswald', sans-serif;
+    font-weight:500;
+    text-transform:uppercase;
+    font-size:1.45rem;
+    line-height:1.15;
+  }
+  .service-item h3 .note{
+    display:block;
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    text-transform:none;
+    font-weight:500;
+    font-size:0.95rem;
+    margin-top:6px;
+    color:var(--ink-soft);
+  }
+  .service-item p{color:var(--ink-soft); font-size:0.98rem; max-width:560px;}
+  .service-item p strong{color:var(--ink); font-weight:600;}
+
+  /* Why */
+  .why{border-bottom:1.5px solid var(--line);}
+  .why-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:0;
+    border:1.5px solid var(--line);
+    border-radius:36px;
+    overflow:hidden;
+  }
+  .why-item{
+    padding:38px 36px;
+    border-bottom:1.5px solid var(--line);
+  }
+  .why-item:nth-child(odd){border-right:1.5px solid var(--line);}
+  .why-item:nth-last-child(-n+2){border-bottom:none;}
+  .why-item h4{
+    font-family:'Oswald', sans-serif;
+    font-weight:500;
+    text-transform:uppercase;
+    font-size:1.1rem;
+    margin-bottom:8px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .why-item h4::before{content:"✦"; font-size:0.8rem;}
+  .why-item p{color:var(--ink-soft); font-size:0.95rem;}
+
+  /* Work */
+  .work{border-bottom:1.5px solid var(--line);}
+  .work-card{
+    border:1.5px solid var(--line);
+    border-radius:28px;
+    overflow:hidden;
+    max-width:420px;
+  }
+  .work-media{
+    background:var(--bone-2);
+    border-bottom:1.5px solid var(--line);
+    padding:30px 26px;
+    text-align:center;
+  }
+  .work-media .big{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:clamp(1.6rem, 2.8vw, 2rem);
+    line-height:1.1;
+  }
+  .work-media .tag-line{
+    margin-top:14px;
+    font-size:0.78rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    color:var(--ink-soft);
+  }
+  .work-body{padding:24px 26px;}
+  .work-body p{color:var(--ink-soft); margin-bottom:16px; font-size:0.92rem;}
+  .work-body ul{margin-bottom:24px;}
+  .work-body ul li{
+    padding:10px 0;
+    border-bottom:1px solid var(--bone-2);
+    font-size:0.88rem;
+    display:flex; align-items:center; gap:10px;
+  }
+  .work-body ul li::before{content:"✦"; font-size:0.7rem;}
+  .work-body .btn{display:flex; width:fit-content; margin:0 auto;}
+  .work-more{
+    margin-top:34px;
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:1.1rem;
+    color:var(--ink-soft);
+  }
+
+  /* Pricing */
+  .pricing{border-bottom:1.5px solid var(--line);}
+  .pricing-card{
+    border:1.5px solid var(--line);
+    border-radius:120px;
+    text-align:center;
+    padding:72px 48px;
+    max-width:720px;
+    margin:0 auto;
+    position:relative;
+  }
+  .pricing-card .spark-mark{
+    position:absolute;
+    background:var(--bone);
+    padding:0 10px;
+    font-size:1.5rem;
+    top:-14px; left:50%; transform:translateX(-50%);
+  }
+  .price-split{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    margin-bottom:30px;
+  }
+  .price-opt{padding:10px 20px;}
+  .price-opt + .price-opt{border-left:1.5px solid var(--line);}
+  .price-opt .from{
+    font-size:0.72rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  .price-opt .tier{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:1.1rem;
+    margin-bottom:10px;
+  }
+  .price-opt .amt-lead{
+    font-size:0.72rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    color:var(--ink-soft);
+    margin-bottom:2px;
+  }
+  .price-opt .amount{
+    font-family:'Oswald', sans-serif;
+    font-weight:500;
+    font-size:3.4rem;
+    line-height:1;
+  }
+  .pricing-card p{
+    color:var(--ink-soft);
+    max-width:480px;
+    margin:0 auto 32px;
+    font-size:0.98rem;
+  }
+
+  /* Contact */
+  .contact{padding-bottom:80px;}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1.2fr 0.8fr;
+    gap:56px;
+    align-items:center;
+  }
+  .contact h2{
+    font-size:clamp(2.4rem, 5.5vw, 3.8rem);
+    margin-bottom:26px;
+  }
+  .contact .contact-lede{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:1.35rem;
+    color:var(--ink-soft);
+    margin-bottom:38px;
+    max-width:520px;
+  }
+  .contact-card{
+    border:1.5px solid var(--line);
+    border-radius:36px;
+    padding:14px 34px;
+  }
+  .contact-row{
+    display:flex; flex-direction:column;
+    padding:22px 0;
+    border-bottom:1px solid var(--bone-2);
+  }
+  .contact-row:last-child{border-bottom:none;}
+  .contact-row span{
+    font-size:0.72rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    color:var(--ink-soft);
+    margin-bottom:4px;
+  }
+  .contact-row a, .contact-row strong{
+    font-family:'Oswald', sans-serif;
+    font-weight:500;
+    font-size:1.2rem;
+    letter-spacing:0.02em;
+  }
+  .contact-row a{border-bottom:1.5px solid transparent; width:fit-content; transition:border-color .2s;}
+  .contact-row a:hover{border-color:var(--ink);}
+
+  footer{
+    border-top:1.5px solid var(--line);
+    padding:28px 0;
+  }
+  .footer-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px; flex-wrap:wrap;
+    font-size:0.78rem;
+    font-weight:500;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    color:var(--ink-soft);
+  }
+  .footer-inner .brand{font-size:1rem; color:var(--ink);}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-side{margin-top:40px;}
+    .hero-photo{max-width:340px;}
+    .service-item{grid-template-columns:48px 1fr; }
+    .service-item p{grid-column:2;}
+    .diff-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr;}
+    .why-item:nth-child(odd){border-right:none;}
+    .why-item:nth-last-child(-n+2){border-bottom:1.5px solid var(--line);}
+    .why-item:last-child{border-bottom:none;}
+    .contact-grid{grid-template-columns:1fr;}
+    .work-media, .work-body{padding-left:28px; padding-right:28px;}
+  }
+  @media (max-width:640px){
+    .nav-links{
+      position:fixed; top:66px; left:0; right:0;
+      background:var(--bone);
+      flex-direction:column;
+      align-items:flex-start;
+      padding:24px;
+      gap:20px;
+      border-bottom:1.5px solid var(--line);
+      display:none;
+    }
+    .nav-links.open{display:flex;}
+    .mobile-toggle{display:block;}
+    .nav-wa{display:none;}
+    section{padding:64px 0;}
+    .hero{padding:72px 0 56px;}
+    .pricing-card{border-radius:48px; padding:56px 28px;}
+    .price-split{grid-template-columns:1fr; gap:22px;}
+    .price-opt + .price-opt{border-left:none; border-top:1.5px solid var(--line); padding-top:24px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="brand">XYX <span>Studio</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#why" data-i18n="nav_why">Why</a></li>
+      <li><a href="#work" data-i18n="nav_work">Work</a></li>
+      <li><a href="#pricing" data-i18n="nav_pricing">Pricing</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang-toggle" id="langToggle">
+        <button data-lang="en" class="active">EN</button>
+        <button data-lang="pt">PT</button>
+      </div>
+      <a class="btn btn-solid btn-sm nav-wa" href="https://wa.me/351933657954" target="_blank" rel="noopener">WhatsApp</a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">☰</button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <h1 class="display" data-i18n="hero_h1"><span class="pov">POV:</span> your customers are looking for you online — and you're not there yet.</h1>
+        <p class="lede" data-i18n="hero_lede">✦ Websites &amp; booking systems, built for your business.</p>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="https://wa.me/351933657954" target="_blank" rel="noopener" data-i18n="hero_cta1">Message on WhatsApp</a>
+          <a class="btn" href="#services" data-i18n="hero_cta2">See services</a>
+        </div>
+      </div>
+      <div class="hero-side">
+        <span class="spark-mark s1">✦</span>
+        <div class="hero-photo">
+          <img src="hero.jpg" onerror="this.onerror=null;this.src='hero.png'" alt="Building websites with an ocean view in the Azores">
+        </div>
+        <span class="spark-mark s2">✦</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-inner" data-i18n="ticker">
+    Custom websites <span class="spark">✦</span> Booking systems <span class="spark">✦</span> Online payments <span class="spark">✦</span> E-commerce <span class="spark">✦</span> Maintenance &amp; support <span class="spark">✦</span>
+    Custom websites <span class="spark">✦</span> Booking systems <span class="spark">✦</span> Online payments <span class="spark">✦</span> E-commerce <span class="spark">✦</span> Maintenance &amp; support <span class="spark">✦</span>
+  </div>
+</div>
+
+<section class="difference" id="difference">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker" data-i18n="diff_kicker">Know what you're getting</div>
+      <h2 class="display" data-i18n="diff_h2">Website or <span class="serif">web platform?</span></h2>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="label" data-i18n="d1_label">Option 01</div>
+        <h3 data-i18n="d1_h3">A Website</h3>
+        <p class="tag" data-i18n="d1_tag">presents your business.</p>
+        <ul>
+          <li data-i18n="d1_l1">Who you are &amp; what you do</li>
+          <li data-i18n="d1_l2">Photos, menu or services, prices</li>
+          <li data-i18n="d1_l3">Location, hours &amp; contacts</li>
+          <li data-i18n="d1_l4">Found on Google, looks professional</li>
+        </ul>
+        <div class="price-hint" data-i18n="d1_price">From €350+</div>
+      </div>
+      <div class="diff-card platform">
+        <div class="label" data-i18n="d2_label">Option 02</div>
+        <h3 data-i18n="d2_h3">A Web Platform</h3>
+        <p class="tag" data-i18n="d2_tag">does work for you.</p>
+        <ul>
+          <li data-i18n="d2_l1">Presents your business — a step further</li>
+          <li data-i18n="d2_l2">Customers book appointments themselves</li>
+          <li data-i18n="d2_l3">Payments &amp; deposits taken online</li>
+          <li data-i18n="d2_l4">Orders, products &amp; stock managed in one place</li>
+          <li data-i18n="d2_l5">Less back-and-forth in DMs and phone calls</li>
+        </ul>
+        <div class="price-hint" data-i18n="d2_price">From €500+</div>
+      </div>
+    </div>
+    <p class="diff-note" data-i18n="diff_note">I build both — and most projects land somewhere in between. We'll figure out together what your business actually needs. ✦</p>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker" data-i18n="sv_kicker">What's included</div>
+      <h2 class="display" data-i18n="sv_h2">Everything your website needs — <span class="serif">handled.</span></h2>
+      <p class="services-note" data-i18n="sv_note">What's included depends on the option you choose — <strong>01 Website</strong> or <strong>02 Web Platform</strong>. We'll define it together in your quote.</p>
+    </div>
+    <div class="service-list">
+
+      <div class="service-item">
+        <div class="num">01</div>
+        <h3 data-i18n="s1_h3">Custom Website Development</h3>
+        <p data-i18n="s1_p">Fully responsive on desktop, tablet, and mobile. Modern, clean design, fast loading speeds, SEO-friendly structure, contact forms, Google Maps and social media integration.</p>
+      </div>
+
+      <div class="service-item">
+        <div class="num">02</div>
+        <h3 data-i18n="s2_h3">Booking Systems</h3>
+        <p data-i18n="s2_p">Perfect for restaurants, hotels &amp; guest houses, salons, barbershops, fitness coaches, consultants and service businesses. <strong>Customers book directly through your site.</strong></p>
+      </div>
+
+      <div class="service-item">
+        <div class="num">03</div>
+        <h3 data-i18n="s3_h3">Online Payments</h3>
+        <p data-i18n="s3_p">Secure payment integration so your customers can purchase products, pay for services, reserve appointments, and make deposits.</p>
+      </div>
+
+      <div class="service-item">
+        <div class="num">04</div>
+        <h3 data-i18n="s4_h3">E-commerce Stores</h3>
+        <p data-i18n="s4_p">Product catalog, shopping cart, secure checkout, order management, inventory management and payment integration — a complete store.</p>
+      </div>
+
+      <div class="service-item">
+        <div class="num">05</div>
+        <h3 data-i18n="s5_h3">Domain &amp; Website Setup<span class="note">your own www. — optional (additional fee)</span></h3>
+        <p data-i18n="s5_p">Every website needs an address. A <strong>free one works</strong>, but <strong>www.yourbusiness.com</strong> looks more professional, is easier to remember, and helps customers trust your business from the first click. A custom domain is an optional extra. I'll register it, connect everything, and get your website live — you won't have to deal with any of the boring tech stuff.</p>
+      </div>
+
+      <div class="service-item">
+        <div class="num">06</div>
+        <h3 data-i18n="s6_h3">Maintenance &amp; Support<span class="note">30 days of complimentary support included</span></h3>
+        <p data-i18n="s6_p">Your website is delivered and launched in full. You'll get <strong>30 days of support</strong> for any issues related to the original project. After that, ongoing maintenance and updates are available whenever you need them. New features or larger changes are quoted separately.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker" data-i18n="why_kicker">Why work with me</div>
+      <h2 class="display" data-i18n="why_h2">Built around your business, <span class="serif">not a template.</span></h2>
+      <p class="services-note" data-i18n="why_note">You bring the vibe — the colours, the mood, the aesthetic. <strong>I turn it into code.</strong></p>
+    </div>
+    <div class="why-grid">
+      <div class="why-item"><h4 data-i18n="w1_h4">Custom-built</h4><p data-i18n="w1_p">No generic templates — every site is designed around your business.</p></div>
+      <div class="why-item"><h4 data-i18n="w2_h4">Modern &amp; responsive</h4><p data-i18n="w2_p">Looks and works great on every device, every screen size.</p></div>
+      <div class="why-item"><h4 data-i18n="w3_h4">Fast delivery</h4><p data-i18n="w3_p">An efficient process from kickoff to launch — direct communication.</p></div>
+      <div class="why-item"><h4 data-i18n="w4_h4">Clear communication</h4><p data-i18n="w4_p">You stay in the loop through the whole project, right on WhatsApp.</p></div>
+      <div class="why-item"><h4 data-i18n="w5_h4">Ongoing support</h4><p data-i18n="w5_p">I'm here after launch — updates, fixes, and improvements.</p></div>
+      <div class="why-item"><h4 data-i18n="w6_h4">Tailored solutions</h4><p data-i18n="w6_p">Every recommendation is built around what your business actually needs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="work" id="work">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker" data-i18n="wk_kicker">Examples of work</div>
+      <h2 class="display" data-i18n="wk_h2">See it <span class="serif">in action.</span></h2>
+    </div>
+    <div class="work-card">
+      <div class="work-media">
+        <div class="big">Growzores</div>
+        <div class="tag-line" data-i18n="wk_tagline">Local shop ✦ Azores</div>
+      </div>
+      <div class="work-body">
+        <p data-i18n="wk_p">A small sustainable farm shop in the Azores selling fresh seasonal flowers and locally-grown produce, built in partnership with Vila Emigrante Bungalows.</p>
+        <ul>
+          <li data-i18n="wk_l1">Online ordering for flower arrangements &amp; harvest baskets</li>
+          <li data-i18n="wk_l2">Complimentary delivery to Vila Emigrante Bungalows</li>
+          <li data-i18n="wk_l3">Clean, nature-inspired design with a farm-to-consumer story</li>
+        </ul>
+        <a class="btn" href="https://growzores-shop.vercel.app" target="_blank" rel="noopener" data-i18n="wk_btn">Visit live site</a>
+      </div>
+    </div>
+    <p class="work-more" data-i18n="wk_more">More projects coming soon — every site is built and launched with the same care. ✦</p>
+  </div>
+</section>
+
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="section-head">
+      <div class="kicker" data-i18n="pr_kicker">Pricing</div>
+      <h2 class="display" data-i18n="pr_h2">Every project gets a <span class="serif">custom quote.</span></h2>
+    </div>
+    <div class="pricing-card">
+      <span class="spark-mark">✦</span>
+      <div class="price-split">
+        <div class="price-opt">
+          <div class="from" data-i18n="pr_o1from">Option 01</div>
+          <div class="tier" data-i18n="pr_o1tier">Website</div>
+          <div class="amt-lead" data-i18n="pr_from">From</div>
+          <div class="amount">€350+</div>
+        </div>
+        <div class="price-opt">
+          <div class="from" data-i18n="pr_o2from">Option 02</div>
+          <div class="tier" data-i18n="pr_o2tier">Web Platform</div>
+          <div class="amt-lead" data-i18n="pr_from">From</div>
+          <div class="amount">€500+</div>
+        </div>
+      </div>
+      <p data-i18n="pr_p">Every project is quoted by scope — you'll get a clear custom quote before anything starts. Maintenance plans available for businesses that want ongoing support.</p>
+      <a class="btn btn-solid" href="https://wa.me/351933657954" target="_blank" rel="noopener" data-i18n="pr_btn">Request a quote</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="container contact-grid">
+    <div>
+      <div class="kicker" data-i18n="ct_kicker">Get in touch</div>
+      <h2 class="display" data-i18n="ct_h2">Let's build <span class="serif">something.</span></h2>
+      <p class="contact-lede" data-i18n="ct_lede">Reach out on WhatsApp for the fastest response — I'll get back to you with next steps and a custom quote.</p>
+      <a class="btn btn-solid" href="https://wa.me/351933657954" target="_blank" rel="noopener" data-i18n="ct_btn">Message on WhatsApp</a>
+    </div>
+    <div class="contact-card">
+      <div class="contact-row">
+        <span data-i18n="ct_wa_label">WhatsApp</span>
+        <a href="https://wa.me/351933657954" target="_blank" rel="noopener" data-i18n="ct_wa_link">Send a message ✦</a>
+      </div>
+      <div class="contact-row">
+        <span data-i18n="ct_email_label">Email</span>
+        <a href="mailto:xyxstudiox@gmail.com">xyxstudiox@gmail.com</a>
+      </div>
+      <div class="contact-row">
+        <span data-i18n="ct_loc_label">Location</span>
+        <strong data-i18n="ct_loc_val">Azores, Portugal</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container footer-inner">
+    <span class="brand">XYX <span>Studio</span></span>
+    <span data-i18n="foot_tag">Websites &amp; booking systems ✦ Azores</span>
+    <span>&copy; <span id="year"></span></span>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var toggle = document.getElementById('mobileToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function(){ links.classList.toggle('open'); });
+  links.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ links.classList.remove('open'); }); });
+
+  var I18N = {
+    en: {
+      nav_services:"Services", nav_why:"Why", nav_work:"Work", nav_pricing:"Pricing", nav_contact:"Contact",
+      hero_eyebrow:"✦ Websites &amp; booking systems, built for your business",
+      hero_h1:"<span class='pov'>POV:</span> your customers are looking for you online — and you're not there yet.",
+      hero_lede:"✦ Websites &amp; booking systems, built for your business.",
+      hero_cta1:"Message on WhatsApp", hero_cta2:"See services",
+      ticker:"Custom websites <span class='spark'>✦</span> Booking systems <span class='spark'>✦</span> Online payments <span class='spark'>✦</span> E-commerce <span class='spark'>✦</span> Maintenance &amp; support <span class='spark'>✦</span> Custom websites <span class='spark'>✦</span> Booking systems <span class='spark'>✦</span> Online payments <span class='spark'>✦</span> E-commerce <span class='spark'>✦</span> Maintenance &amp; support <span class='spark'>✦</span>",
+      diff_kicker:"Know what you're getting",
+      diff_h2:"Website or <span class='serif'>web platform?</span>",
+      d1_label:"Option 01", d1_h3:"A Website", d1_tag:"presents your business.",
+      d1_l1:"Who you are &amp; what you do", d1_l2:"Photos, menu or services, prices", d1_l3:"Location, hours &amp; contacts", d1_l4:"Found on Google, looks professional",
+      d1_price:"From €350+",
+      d2_label:"Option 02", d2_h3:"A Web Platform", d2_tag:"does work for you.",
+      d2_l1:"Presents your business — a step further", d2_l2:"Customers book appointments themselves", d2_l3:"Payments &amp; deposits taken online", d2_l4:"Orders, products &amp; stock managed in one place", d2_l5:"Less back-and-forth in DMs and phone calls",
+      d2_price:"From €500+",
+      diff_note:"I build both — and most projects land somewhere in between. We'll figure out together what your business actually needs. ✦",
+      sv_kicker:"What's included",
+      sv_h2:"Everything your website needs — <span class='serif'>handled.</span>",
+      sv_note:"What's included depends on the option you choose — <strong>01 Website</strong> or <strong>02 Web Platform</strong>. We'll define it together in your quote.",
+      s1_h3:"Custom Website Development",
+      s1_p:"Fully responsive on desktop, tablet, and mobile. Modern, clean design, fast loading speeds, SEO-friendly structure, contact forms, Google Maps and social media integration.",
+      s2_h3:"Booking Systems",
+      s2_p:"Perfect for restaurants, hotels &amp; guest houses, salons, barbershops, fitness coaches, consultants and service businesses. <strong>Customers book directly through your site.</strong>",
+      s3_h3:"Online Payments",
+      s3_p:"Secure payment integration so your customers can purchase products, pay for services, reserve appointments, and make deposits.",
+      s4_h3:"E-commerce Stores",
+      s4_p:"Product catalog, shopping cart, secure checkout, order management, inventory management and payment integration — a complete store.",
+      s5_h3:"Domain &amp; Website Setup<span class='note'>your own www. — optional (additional fee)</span>",
+      s5_p:"Every website needs an address. A <strong>free one works</strong>, but <strong>www.yourbusiness.com</strong> looks more professional, is easier to remember, and helps customers trust your business from the first click. A custom domain is an optional extra. I'll register it, connect everything, and get your website live — you won't have to deal with any of the boring tech stuff.",
+      s6_h3:"Maintenance &amp; Support<span class='note'>30 days of complimentary support included</span>",
+      s6_p:"Your website is delivered and launched in full. You'll get <strong>30 days of support</strong> for any issues related to the original project. After that, ongoing maintenance and updates are available whenever you need them. New features or larger changes are quoted separately.",
+      why_kicker:"Why work with me",
+      why_h2:"Built around your business, <span class='serif'>not a template.</span>",
+      why_note:"You bring the vibe — the colours, the mood, the aesthetic. <strong>I turn it into code.</strong>",
+      w1_h4:"Custom-built", w1_p:"No generic templates — every site is designed around your business.",
+      w2_h4:"Modern &amp; responsive", w2_p:"Looks and works great on every device, every screen size.",
+      w3_h4:"Fast delivery", w3_p:"An efficient process from kickoff to launch — direct communication.",
+      w4_h4:"Clear communication", w4_p:"You stay in the loop through the whole project, right on WhatsApp.",
+      w5_h4:"Ongoing support", w5_p:"I'm here after launch — updates, fixes, and improvements.",
+      w6_h4:"Tailored solutions", w6_p:"Every recommendation is built around what your business actually needs.",
+      wk_kicker:"Examples of work",
+      wk_h2:"See it <span class='serif'>in action.</span>",
+      wk_tagline:"Local shop ✦ Azores",
+      wk_p:"A small sustainable farm shop in the Azores selling fresh seasonal flowers and locally-grown produce, built in partnership with Vila Emigrante Bungalows.",
+      wk_l1:"Online ordering for flower arrangements &amp; harvest baskets", wk_l2:"Complimentary delivery to Vila Emigrante Bungalows", wk_l3:"Clean, nature-inspired design with a farm-to-consumer story",
+      wk_btn:"Visit live site",
+      wk_more:"More projects coming soon — every site is built and launched with the same care. ✦",
+      pr_kicker:"Pricing",
+      pr_h2:"Every project gets a <span class='serif'>custom quote.</span>",
+      pr_o1from:"Option 01", pr_o1tier:"Website", pr_o2from:"Option 02", pr_o2tier:"Web Platform", pr_from:"From",
+      pr_p:"Every project is quoted by scope — you'll get a clear custom quote before anything starts. Maintenance plans available for businesses that want ongoing support.",
+      pr_btn:"Request a quote",
+      ct_kicker:"Get in touch",
+      ct_h2:"Let's build <span class='serif'>something.</span>",
+      ct_lede:"Reach out on WhatsApp for the fastest response — I'll get back to you with next steps and a custom quote.",
+      ct_btn:"Message on WhatsApp",
+      ct_wa_label:"WhatsApp", ct_wa_link:"Send a message ✦", ct_email_label:"Email", ct_loc_label:"Location", ct_loc_val:"Azores, Portugal",
+      foot_tag:"Websites &amp; booking systems ✦ Azores"
+    },
+    pt: {
+      nav_services:"Serviços", nav_why:"Porquê", nav_work:"Trabalhos", nav_pricing:"Preços", nav_contact:"Contacto",
+      hero_eyebrow:"✦ Sites e sistemas de marcação, feitos para o seu negócio",
+      hero_h1:"<span class='pov'>POV:</span> os seus clientes estão à sua procura online — e o seu negócio ainda não está lá.",
+      hero_lede:"✦ Sites e sistemas de marcação, feitos para o seu negócio.",
+      hero_cta1:"Falar no WhatsApp", hero_cta2:"Ver serviços",
+      ticker:"Sites personalizados <span class='spark'>✦</span> Sistemas de marcação <span class='spark'>✦</span> Pagamentos online <span class='spark'>✦</span> E-commerce <span class='spark'>✦</span> Manutenção e suporte <span class='spark'>✦</span> Sites personalizados <span class='spark'>✦</span> Sistemas de marcação <span class='spark'>✦</span> Pagamentos online <span class='spark'>✦</span> E-commerce <span class='spark'>✦</span> Manutenção e suporte <span class='spark'>✦</span>",
+      diff_kicker:"Saiba o que vai receber",
+      diff_h2:"Site ou <span class='serif'>plataforma web?</span>",
+      d1_label:"Opção 01", d1_h3:"Um Site", d1_tag:"apresenta o seu negócio.",
+      d1_l1:"Quem é e o que faz", d1_l2:"Fotos, menu ou serviços, preços", d1_l3:"Localização, horário e contactos", d1_l4:"Encontrado no Google, com aspeto profissional",
+      d1_price:"Desde €350+",
+      d2_label:"Opção 02", d2_h3:"Uma Plataforma Web", d2_tag:"trabalha por si.",
+      d2_l1:"Apresenta o seu negócio — um passo além", d2_l2:"Os clientes marcam sozinhos", d2_l3:"Pagamentos e sinais recebidos online", d2_l4:"Encomendas, produtos e stock geridos num só lugar", d2_l5:"Menos idas e voltas em DMs e chamadas",
+      d2_price:"Desde €500+",
+      diff_note:"Faço os dois — e a maioria dos projetos fica algures no meio. Vamos descobrir juntos o que o seu negócio realmente precisa. ✦",
+      sv_kicker:"O que está incluído",
+      sv_h2:"Tudo o que o seu site precisa — <span class='serif'>tratado.</span>",
+      sv_note:"O que está incluído depende da opção que escolher — <strong>01 Site</strong> ou <strong>02 Plataforma Web</strong>. Vamos definir isso juntos no seu orçamento.",
+      s1_h3:"Desenvolvimento de Site Personalizado",
+      s1_p:"Totalmente responsivo em computador, tablet e telemóvel. Design moderno e limpo, carregamento rápido, estrutura otimizada para SEO, formulários de contacto, Google Maps e integração com redes sociais.",
+      s2_h3:"Sistemas de Marcação",
+      s2_p:"Perfeito para restaurantes, hotéis e alojamentos, salões, barbearias, personal trainers, consultores e negócios de serviços. <strong>Os clientes marcam diretamente através do seu site.</strong>",
+      s3_h3:"Pagamentos Online",
+      s3_p:"Integração de pagamentos seguros para os seus clientes comprarem produtos, pagarem serviços, reservarem marcações e deixarem sinais.",
+      s4_h3:"Lojas Online",
+      s4_p:"Catálogo de produtos, carrinho de compras, checkout seguro, gestão de encomendas, gestão de stock e integração de pagamentos — uma loja completa.",
+      s5_h3:"Domínio e Configuração do Site<span class='note'>o seu próprio www. — opcional (custo adicional)</span>",
+      s5_p:"Todo o site precisa de um endereço. Um <strong>gratuito funciona</strong>, mas <strong>www.oseunegocio.com</strong> parece mais profissional, é mais fácil de lembrar e ajuda os clientes a confiar no seu negócio logo ao primeiro clique. Um domínio personalizado é um extra opcional. Eu trato do registo, ligo tudo e coloco o seu site online — não terá de lidar com nenhuma da parte técnica chata.",
+      s6_h3:"Manutenção e Suporte<span class='note'>30 dias de suporte gratuito incluídos</span>",
+      s6_p:"O seu site é entregue e lançado por completo. Terá <strong>30 dias de suporte</strong> para qualquer questão relacionada com o projeto original. Depois disso, a manutenção e atualizações contínuas estão disponíveis sempre que precisar. Novas funcionalidades ou alterações maiores são orçamentadas à parte.",
+      why_kicker:"Porquê trabalhar comigo",
+      why_h2:"Feito à volta do seu negócio, <span class='serif'>não um template.</span>",
+      why_note:"Você traz a vibe — as cores, o mood, a estética. <strong>Eu transformo em código.</strong>",
+      w1_h4:"Feito à medida", w1_p:"Sem templates genéricos — cada site é desenhado à volta do seu negócio.",
+      w2_h4:"Moderno e responsivo", w2_p:"Fica e funciona bem em qualquer dispositivo, em qualquer ecrã.",
+      w3_h4:"Entrega rápida", w3_p:"Um processo eficiente do início ao lançamento — comunicação direta.",
+      w4_h4:"Comunicação clara", w4_p:"Fica a par de tudo durante todo o projeto, diretamente no WhatsApp.",
+      w5_h4:"Suporte contínuo", w5_p:"Estou cá depois do lançamento — atualizações, correções e melhorias.",
+      w6_h4:"Soluções à medida", w6_p:"Cada recomendação é feita à volta do que o seu negócio realmente precisa.",
+      wk_kicker:"Exemplos de trabalho",
+      wk_h2:"Veja <span class='serif'>em ação.</span>",
+      wk_tagline:"Loja local ✦ Açores",
+      wk_p:"Uma pequena loja agrícola sustentável nos Açores que vende flores frescas da época e produtos locais, feita em parceria com os Vila Emigrante Bungalows.",
+      wk_l1:"Encomendas online de arranjos florais e cabazes", wk_l2:"Entrega gratuita nos Vila Emigrante Bungalows", wk_l3:"Design limpo e inspirado na natureza, com uma história do campo ao consumidor",
+      wk_btn:"Ver site",
+      wk_more:"Mais projetos em breve — cada site é feito e lançado com o mesmo cuidado. ✦",
+      pr_kicker:"Preços",
+      pr_h2:"Cada projeto recebe um <span class='serif'>orçamento à medida.</span>",
+      pr_o1from:"Opção 01", pr_o1tier:"Site", pr_o2from:"Opção 02", pr_o2tier:"Plataforma Web", pr_from:"Desde",
+      pr_p:"Cada projeto é orçamentado consoante o âmbito — receberá um orçamento claro antes de começar. Planos de manutenção disponíveis para negócios que queiram suporte contínuo.",
+      pr_btn:"Pedir orçamento",
+      ct_kicker:"Fale comigo",
+      ct_h2:"Vamos construir <span class='serif'>algo.</span>",
+      ct_lede:"Fale comigo no WhatsApp para uma resposta mais rápida — respondo com os próximos passos e um orçamento à medida.",
+      ct_btn:"Falar no WhatsApp",
+      ct_wa_label:"WhatsApp", ct_wa_link:"Enviar mensagem ✦", ct_email_label:"Email", ct_loc_label:"Localização", ct_loc_val:"Açores, Portugal",
+      foot_tag:"Sites e sistemas de marcação ✦ Açores"
+    }
+  };
+
+  function setLang(lang){
+    var dict = I18N[lang]; if(!dict) return;
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k = el.getAttribute('data-i18n');
+      if(dict[k] !== undefined) el.innerHTML = dict[k];
+    });
+    document.documentElement.lang = lang;
+    document.querySelectorAll('#langToggle button').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-lang') === lang);
+    });
+    try{ localStorage.setItem('xyx_lang', lang); }catch(e){}
+  }
+
+  var initLang = 'en';
+  try{
+    var saved = localStorage.getItem('xyx_lang');
+    if(saved){ initLang = saved; }
+    else if((navigator.language || '').toLowerCase().indexOf('pt') === 0){ initLang = 'pt'; }
+  }catch(e){}
+  document.querySelectorAll('#langToggle button').forEach(function(b){
+    b.addEventListener('click', function(){ setLang(b.getAttribute('data-lang')); });
+  });
+  setLang(initLang);
+</script>
+
+</body>
+</html>
